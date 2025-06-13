@@ -1,7 +1,7 @@
 -- -----------------------------------------------------
 -- Schema FolhaPonto
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `FolhaPonto` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `FolhaPonto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `FolhaPonto` ;
 
 -- -----------------------------------------------------
@@ -84,6 +84,25 @@ CREATE TABLE IF NOT EXISTS `FolhaPonto`.`pontos` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO tipoUsuario (id, funcao) 
+VALUES (1, 'admin'), (2,'user')
+  ON DUPLICATE KEY UPDATE funcao = VALUES(funcao);
+
+INSERT INTO usuario (nome, matricula, senha, salt, tipoUsuario)
+VALUES (
+  'Administrador',
+  'admin001',
+  '123',
+  '123',
+  1
+)
+ON DUPLICATE KEY UPDATE nome = nome;
+
+CREATE USER IF NOT EXISTS 'nestuser'@'%' IDENTIFIED WITH caching_sha2_password BY 'nestpassword';
+
+GRANT ALL PRIVILEGES ON FolhaPonto.* TO 'nestuser'@'%';
+
+FLUSH PRIVILEGES;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
