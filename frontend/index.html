@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <title>Folha Ponto</title>
 </head>
 <body>
-    <h1>Projeto Folha Ponto</h1>
+    <main class="container">
+        <h1>Projeto Folha Ponto</h1>
+    </main>
+    <main class="container" style="max-width: 400px; margin-top: 10vh;">
+        <h2>Login</h2>
+        <form>
+          <label for="email">
+            Email
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label for="password">
+            Password
+            <input type="password" id="password" name="password" placeholder="••••••••" required />
+          </label>
+          <button type="submit" class="contrast">Log In</button>
+        </form>
+        <small>Don't have an account? <a href="#">Sign up</a></small>
+      </main>
 </body>
 </html>
