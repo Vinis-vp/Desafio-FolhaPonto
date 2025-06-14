@@ -22,6 +22,14 @@ export class UsuarioService {
     return await this.usuarioRepository.find()
   }
 
+  async findMatricula(matricula: string): Promise<Usuario>{
+    const user = await this.usuarioRepository.findOneBy({ matricula })
+    if(!user){
+      throw new Error('Usuario não encontrado');
+    }
+    return user
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} usuario`;
   }
