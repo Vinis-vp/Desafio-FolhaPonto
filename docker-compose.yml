@@ -6,9 +6,8 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    entrypoint: ["/usr/src/app/wait-for-mysql.sh"]
+      - ./backend:/usr/src/node_modules
+    entrypoint: ["sh", "wait-for-mysql.sh"]
     depends_on:
       - db
     env_file:
