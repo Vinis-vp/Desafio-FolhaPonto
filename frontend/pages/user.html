@@ -84,41 +84,28 @@
       color: var(--text-dark);
     }
   </style>
-  <script>
-    function atualizarHora() {
-      const agora = new Date();
-      document.getElementById("horaAtual").textContent = agora.toLocaleTimeString('pt-BR');
-    }
-
-    function registrarPonto() {
-      const hora = new Date().toLocaleTimeString('pt-BR');
-      alert("Ponto registrado às " + hora);
-    }
-
-    setInterval(atualizarHora, 1000);
-    window.onload = atualizarHora;
-  </script>
 </head>
 <body>
   <main>
     <h2>Registro de Ponto</h2>
 
     <div class="info">
-      <p><strong>Funcionário:</strong> João Silva</p>
+      <p><strong>Funcionário:</strong> <span id="nomeFuncionario">Carregando...</span></p>
       <p><strong>Horário Atual:</strong> <span id="horaAtual">--:--:--</span></p>
     </div>
 
     <div class="horarios">
       <p><strong>Jornada de Trabalho:</strong></p>
       <ul>
-        <li>Entrada Manhã: 08:00</li>
-        <li>Saída Manhã: 12:00</li>
-        <li>Entrada Tarde: 14:00</li>
-        <li>Saída Tarde: 18:00</li>
+        <li>Entrada Manhã: <span id="entradaManha">--:--</span></li>
+        <li>Saída Manhã: <span id="saidaManha">--:--</span></li>
+        <li>Entrada Tarde: <span id="entradaTarde">--:--</span></li>
+        <li>Saída Tarde: <span id="saidaTarde">--:--</span></li>
       </ul>
     </div>
 
     <button onclick="registrarPonto()">Registrar Ponto</button>
   </main>
+  <script src="../js/dadosFuncionario.js"></script>
 </body>
 </html>

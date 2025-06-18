@@ -15,13 +15,17 @@ export class UsuarioService {
     private readonly jornadaTrabalhoService: JornadaTrabalhoService
   ) {}
 
-  async create(data: FuncionarioDto): Promise<Usuario> {
-    
+  async create(req: any, data: FuncionarioDto): Promise<Usuario> {
+
+    const admin = await this.findMatricula(req.matricula)
+    if (admin.tipoUsuario !== 1){
+      throw new HttpException('Usuário não autorizado', HttpStatus.UNAUTHORIZED)
+    }
     
     const funcionario = data.usuario;
     const jornada = data.jornada;
     const funcExistente = await this.findOne(funcionario.matricula)
-    if (funcExistente){
+    if (funcExistente == false){
       throw new HttpException('Esse funcionário já existe!', HttpStatus.BAD_REQUEST)
     }
 
@@ -57,6 +61,19 @@ export class UsuarioService {
       return false
     }
     return true
+  }
+
+  async getUserData(req: any): Promise<FuncionarioDto>{
+    const user = await this.findMatricula(req.matricula)
+
+    const jornada = await this.jornadaTrabalhoService.findOne(user.id);
+
+    const funcionario:FuncionarioDto = {
+      usuario: user,
+      jornada: jornada
+    }
+      
+    return funcionario
   }
 
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {

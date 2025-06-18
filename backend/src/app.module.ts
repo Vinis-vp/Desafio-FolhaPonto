@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { JornadaTrabalhoModule } from './jornada-trabalho/jornada-trabalho.module';
+import { PontosModule } from './pontos/pontos.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { JornadaTrabalhoModule } from './jornada-trabalho/jornada-trabalho.modul
     
     UsuarioModule,
     AuthModule,
-    JornadaTrabalhoModule
+    JornadaTrabalhoModule,
+    PontosModule
   ],
   controllers: [AppController],
   providers: [

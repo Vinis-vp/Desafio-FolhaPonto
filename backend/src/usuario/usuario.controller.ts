@@ -10,7 +10,12 @@ export class UsuarioController {
 
   @Post()
   create(@Req() req, @Body() funcionarioDto: FuncionarioDto) {
-    return this.usuarioService.create(funcionarioDto);
+    return this.usuarioService.create(req, funcionarioDto);
+  }
+
+  @Get('individual')
+  findOne(@Req() req) {
+    return this.usuarioService.getUserData(req.user)
   }
 
   @Get()

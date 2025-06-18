@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateJornadaTrabalhoDto } from './dto/create-jornada-trabalho.dto';
 import { UpdateJornadaTrabalhoDto } from './dto/update-jornada-trabalho.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -22,8 +22,12 @@ export class JornadaTrabalhoService {
     return `This action returns all jornadaTrabalho`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jornadaTrabalho`;
+  async findOne(idUsuario: number): Promise<JornadaTrabalho> {
+    const jornada = await this.jornadaTrabalhoRepository.findOneBy({ idUsuario })
+    if (!jornada){
+      throw new HttpException('Jornada de trabalho não encontrada!', HttpStatus.NOT_FOUND)
+    }
+    return jornada;
   }
 
   update(id: number, updateJornadaTrabalhoDto: UpdateJornadaTrabalhoDto) {
