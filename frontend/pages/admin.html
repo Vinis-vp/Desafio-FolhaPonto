@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Painel Admin Minimalista</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.classless.min.css" />
+  <style>
+    body {
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: #0275d8;
+    }
+
+    .painel {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 1rem;
+    }
+
+    section {
+      background: #fefefe;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      padding: 1rem;
+      font-size: 13px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: #0275d8;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    input, button {
+      font-size: 13px;
+      padding: 0.3rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    input {
+      background: #fff;
+      border: 1px solid #ccc;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background-color: #0275d8;
+      color: #fff;
+      border: none;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    ul {
+      padding-left: 1rem;
+      margin: 0;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+  </style>
+  <script>
+    function cadastrarFuncionario(event) {
+      event.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const matricula = document.getElementById("matricula").value;
+      alert(`Funcionário "${nome}" cadastrado com matrícula ${matricula}.`);
+      event.target.reset();
+    }
+
+    function emitirRelatorio() {
+      alert("PDF sendo gerado...");
+    }
+  </script>
+</head>
+<body>
+  <main>
+    <h2>Painel do Administrador</h2>
+
+    <div class="painel">
+      <!-- Cadastro -->
+      <section>
+        <h3>Cadastro</h3>
+       <form id="cadastroFuncionario">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" required />
+
+        <label for="matricula">Matrícula</label>
+        <input type="text" id="matricula" required />
+
+        <label for="entradaManha">Entrada (Manhã)</label>
+        <input type="time" id="entradaManha" value="08:00" required />
+
+        <label for="saidaManha">Saída (Manhã)</label>
+        <input type="time" id="saidaManha" value="12:00" required />
+
+        <label for="entradaTarde">Entrada (Tarde)</label>
+        <input type="time" id="entradaTarde" value="13:30" required />
+
+        <label for="saidaTarde">Saída (Tarde)</label>
+        <input type="time" id="saidaTarde" value="18:00" required />
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required />
+
+        <button type="submit">Cadastrar</button>
+      </form>
+
+      </section>
+
+      <!-- Dashboard -->
+      <section>
+        <h3>Dashboard</h3>
+        <ul>
+          <li><strong>Funcionários:</strong> 12</li>
+          <li><strong>Registros Hoje:</strong> 34</li>
+          <li><strong>Último acesso:</strong> 13/06/2025 08:15</li>
+        </ul>
+      </section>
+
+      <!-- Relatório -->
+      <section>
+        <h3>Relatórios</h3>
+        <p>Exportar registros do sistema:</p>
+        <button onclick="emitirRelatorio()">Emitir PDF</button>
+      </section>
+    </div>
+  </main>
+  <script src="../js/novoFuncionario.js"></script>
+</body>
+</html>

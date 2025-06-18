@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { JornadaTrabalhoModule } from './jornada-trabalho/jornada-trabalho.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     }),
     
     UsuarioModule,
-    AuthModule
+    AuthModule,
+    JornadaTrabalhoModule
   ],
   controllers: [AppController],
   providers: [

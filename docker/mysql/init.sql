@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FolhaPonto`.`jornadaTrabalho` ;
 
 CREATE TABLE IF NOT EXISTS `FolhaPonto`.`jornadaTrabalho` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `entradaManha` TIME NOT NULL,
   `saidaManha` TIME NOT NULL,
   `entradaTarde` TIME NOT NULL,
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FolhaPonto`.`pontos` ;
 
 CREATE TABLE IF NOT EXISTS `FolhaPonto`.`pontos` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `idUsuario` INT NOT NULL,
   `horarioReal` DATETIME NOT NULL,
   `dataRegistro` DATE NOT NULL,
@@ -92,7 +92,7 @@ INSERT INTO usuario (nome, matricula, senha, salt, tipoUsuario)
 VALUES (
   'Administrador',
   'admin001',
-  '123',
+  '$2a$12$8Vy4O8zOXW4Bvpj5kL6VveDdCrCexDISWLUCC3jAqPZ7wBmIFRj8m',
   '123',
   1
 )

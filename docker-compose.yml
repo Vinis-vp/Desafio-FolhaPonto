@@ -6,12 +6,12 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./backend:/usr/src/node_modules
+      - ./backend:/usr/src/app
     entrypoint: ["sh", "wait-for-mysql.sh"]
     depends_on:
       - db
     env_file:
-      - .env
+      - ./backend/.env
 
   frontend:
     image: nginx:latest
@@ -27,11 +27,13 @@ services:
     restart: always
     ports:
       - '3307:3306'
+    env_file:
+      - ./backend/.env
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: FolhaPonto
+      MYSQL_USER: nestuser
+      MYSQL_PASSWORD: nestpassword
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docker/mysql:/docker-entrypoint-initdb.d:ro
