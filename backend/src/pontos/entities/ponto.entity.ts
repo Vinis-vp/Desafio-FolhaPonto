@@ -7,22 +7,22 @@ export enum TipoRegistro {
     SAIDA_TARDE = 'saida_tarde',
 }
 
-@Entity('ponto')
-export class Ponto {
+@Entity('pontos')
+export class Pontos {
     @PrimaryColumn()
     id: number;
 
     @Column({ type: 'int', nullable: false})
     idUsuario: number;
 
-    @Column({ type:'datetime' })
+    @Column({ type:'time' })
     horarioReal: string;
 
     @Column({ type:'date' })
     dataRegistro: string;
 
     @Column({ type:'tinyint' })
-    dentroDaJanela: string;
+    dentroDaJanela: boolean;
 
     @Column({ type:'enum', enum: TipoRegistro })
     tipoRegistro: TipoRegistro

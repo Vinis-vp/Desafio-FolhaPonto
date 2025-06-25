@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { PontosService } from './pontos.service';
 import { CreatePontoDto } from './dto/create-ponto.dto';
 import { UpdatePontoDto } from './dto/update-ponto.dto';
@@ -8,18 +8,13 @@ export class PontosController {
   constructor(private readonly pontosService: PontosService) {}
 
   @Post()
-  create(@Body() createPontoDto: CreatePontoDto) {
-    return this.pontosService.create(createPontoDto);
+  create(@Req() req, @Body() createPontoDto: CreatePontoDto) {
+    return this.pontosService.create(req.user, createPontoDto);
   }
 
   @Get()
   findAll() {
     return this.pontosService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pontosService.findOne(+id);
   }
 
   @Patch(':id')

@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `FolhaPonto`.`pontos` ;
 CREATE TABLE IF NOT EXISTS `FolhaPonto`.`pontos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idUsuario` INT NOT NULL,
-  `horarioReal` DATETIME NOT NULL,
+  `horarioReal` TIME NOT NULL,
   `dataRegistro` DATE NOT NULL,
   `dentroDaJanela` TINYINT NOT NULL,
   `tipoRegistro` ENUM('entrada_manha', 'saida_manha', 'entrada_tarde', 'saida_tarde') NOT NULL,
